@@ -1,0 +1,244 @@
+:root {
+    --fondo-principal: #0b0f19;
+    --fondo-tarjeta: #131c2e;
+    --rojo-acento: #e63946;
+    --dorado-acento: #f4a261;
+    --texto-principal: #f1faee;
+    --texto-secundario: #a8dadc;
+    --color-borde: #1d3557;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--fondo-principal);
+    color: var(--texto-principal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 6rem;
+    background-image: radial-gradient(circle at center, #111c33 0%, var(--fondo-principal) 100%);
+}
+
+.contenedor-presentacion {
+    width: 100%;
+    max-width: 950px;
+    padding: 2rem;
+}
+
+.diapositiva {
+    display: none;
+    background-color: var(--fondo-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: 14px;
+    padding: 3rem 3.5rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    min-height: 480px;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: aparecer 0.4s ease-in-out;
+}
+
+.diapositiva.activa {
+    display: flex;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.categoria-diapositiva {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--dorado-acento);
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+}
+
+.titulo-diapositiva {
+    font-size: 2.2rem;
+    color: var(--texto-principal);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.texto-diapositiva {
+    font-size: 1.05rem;
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+/* Cajas de estadísticas (Estilo visto en la diapo inicial del video) */
+.contenedor-estadisticas {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.caja-estadistica {
+    background-color: #080c14;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    flex: 1;
+    text-align: center;
+}
+
+.numero-estadistica {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dorado-acento);
+    margin-bottom: 0.3rem;
+    letter-spacing: 1px;
+}
+
+.etiqueta-estadistica {
+    font-size: 0.8rem;
+    color: var(--texto-secundario);
+}
+
+/* Cajas de preguntas / datos curiosos (Estilo visto en el video) */
+.caja-pregunta {
+    background-color: #080c14;
+    border: 1px solid var(--color-borde);
+    border-left: 4px solid var(--rojo-acento);
+    padding: 1.2rem 1.5rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+}
+
+.etiqueta-caja {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--rojo-acento);
+    margin-bottom: 0.4rem;
+    letter-spacing: 1px;
+}
+
+.caja-pregunta p {
+    margin: 0;
+    color: var(--texto-principal);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Barra de controles inferior */
+.barra-navegacion {
+    position: fixed;
+    z-index: 10;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 1rem 2rem max(1rem, env(safe-area-inset-bottom));
+    background-color: rgba(11, 15, 25, 0.96);
+    border-top: 1px solid var(--color-borde);
+}
+
+.boton-navegacion {
+    background-color: #1e293b;
+    color: var(--texto-principal);
+    border: 1px solid var(--color-borde);
+    padding: 0.7rem 1.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.boton-navegacion:hover:not(:disabled) {
+    background-color: var(--rojo-acento);
+    border-color: var(--rojo-acento);
+    box-shadow: 0 0 15px rgba(230, 57, 70, 0.4);
+}
+
+.boton-navegacion:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.contenedor-puntos {
+    display: flex;
+    gap: 10px;
+}
+
+.punto {
+    appearance: none;
+    flex: 0 0 12px;
+    width: 12px;
+    height: 12px;
+    background-color: #1e293b;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.punto.activa {
+    background-color: var(--dorado-acento);
+    border-color: var(--dorado-acento);
+    box-shadow: 0 0 10px rgba(244, 162, 97, 0.5);
+}
+
+@media (max-width: 600px) {
+    body {
+        justify-content: flex-start;
+        padding-bottom: 6rem;
+    }
+
+    .contenedor-presentacion {
+        padding: 1rem;
+    }
+
+    .diapositiva {
+        min-height: 0;
+        padding: 2rem 1.5rem;
+    }
+
+    .contenedor-estadisticas {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .caja-estadistica {
+        min-width: min(100%, 150px);
+    }
+
+    .barra-navegacion {
+        gap: 0.75rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .boton-navegacion {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.75rem;
+    }
+}
+
+:focus-visible {
+    outline: 3px solid var(--dorado-acento);
+    outline-offset: 3px;
+}
